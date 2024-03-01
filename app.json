@@ -15,16 +15,41 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.newanywhere.pokedexnew"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.newanywhere.pokedexnew"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "79c16754-3745-49a7-90fb-b505a2b79a3b"
+      }
+    },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./node_modules/@expo-google-fonts/roboto/Roboto_400Regular.ttf",
+            "./node_modules/@expo-google-fonts/roboto/Roboto_500Medium.ttf",
+            "./node_modules/@expo-google-fonts/roboto/Roboto_700Bold.ttf",
+            "./node_modules/@expo-google-fonts/roboto/Roboto_900Black.ttf",
+            "./node_modules/@expo-google-fonts/roboto/Roboto_100Thin.ttf",
+            "./node_modules/@expo-google-fonts/roboto/Roboto_100Thin_Italic.ttf",
+            "./node_modules/@expo-google-fonts/roboto/Roboto_300Light.ttf",
+            "./node_modules/@expo-google-fonts/roboto/Roboto_300Light_Italic.ttf",
+            "./node_modules/@expo-google-fonts/roboto/Roboto_400Regular_Italic.ttf"
+          ]
+        }
+      ]
+    ]
   }
 }
