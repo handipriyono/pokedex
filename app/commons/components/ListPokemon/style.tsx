@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   itemWrapper: {
@@ -28,7 +28,8 @@ export default StyleSheet.create({
   name: {
     fontSize: 16,
     fontWeight: "500",
-    fontFamily: "Roboto-Bold",
+    fontFamily:
+      Platform.OS === "android" ? "Roboto-Medium" : "Roboto_500Medium",
     textAlign: "center",
   },
 });
