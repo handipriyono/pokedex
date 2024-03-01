@@ -27,6 +27,7 @@ function DetailScreen({ route }: TDetailScreen) {
   return (
     <SafeAreaView style={Styles.safeAreaStyle}>
       <ScrollView
+        overScrollMode="never"
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
       >

@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   safeAreaStyle: { flex: 1, backgroundColor: "#fff" },
@@ -18,10 +18,23 @@ export default StyleSheet.create({
     paddingHorizontal: 16,
   },
   titleAbility: { fontSize: 20, fontWeight: "700" },
-  itemAbility: { fontSize: 14, fontWeight: "400" },
-  spriteWrapper: {
+  itemAbility: {
+    fontSize: 14,
+    fontWeight: "400",
+    fontFamily:
+      Platform.OS === "android" ? "Roboto-Regular" : "Roboto_400Regular",
+  },
+  spriteTitleWrapper: {
+    fontSize: 20,
+    fontFamily: Platform.OS === "android" ? "Roboto-Bold" : "Roboto_700Bold",
     paddingHorizontal: 15,
     marginTop: 20,
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  spriteWrapper: {
+    paddingHorizontal: 15,
+    marginTop: 10,
     flex: 1,
     backgroundColor: "#fff",
     flexDirection: "row",
@@ -42,6 +55,6 @@ export default StyleSheet.create({
   pokemonTitle: {
     fontSize: 36,
     fontWeight: "700",
-    fontFamily: "Roboto_700Bold",
+    fontFamily: Platform.OS === "android" ? "Roboto-Bold" : "Roboto_700Bold",
   },
 });
