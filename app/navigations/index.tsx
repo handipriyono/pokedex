@@ -24,6 +24,7 @@ const Navigation = () => {
           component={HomePage}
           options={({ navigation, route }) => ({
             headerTitle: "Pokedex",
+            headerTitleAlign: "center",
             headerRight: () => (
               <TouchableOpacity
                 onPress={() => {
@@ -39,6 +40,7 @@ const Navigation = () => {
           name="DetailPokemon"
           component={DetailScreen}
           options={({ navigation, route }) => ({
+            headerTitleAlign: "center",
             headerTitle: "Pokemon Detail",
             headerLeft: () => (
               <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -52,6 +54,7 @@ const Navigation = () => {
           component={FavoritePokemon}
           options={({ navigation, route }) => ({
             headerTitle: "Favorite Pokemon",
+            headerTitleAlign: "center",
             headerLeft: () => (
               <TouchableOpacity onPress={() => navigation.goBack()}>
                 <AntDesign name="arrowleft" size={24} color="black" />
