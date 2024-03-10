@@ -13,8 +13,7 @@ type THomePage = {
 
 function HomePage({ route, navigation }: THomePage) {
   const { search, onSearch, debouncedSearch } = useSearch();
-  const { data, fetchNextPage } = useGetPokemonList({
-    search,
+  const { data, fetchNextPage, isFetchingNextPage } = useGetPokemonList({
     debouncedSearch,
   });
 
@@ -26,6 +25,7 @@ function HomePage({ route, navigation }: THomePage) {
           fetchNextPage={fetchNextPage}
           navigation={navigation}
           data={data}
+          isFetchingNextPage={isFetchingNextPage}
         />
         <StatusBar style="auto" />
       </View>
