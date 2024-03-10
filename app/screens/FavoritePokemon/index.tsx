@@ -1,10 +1,11 @@
 import { View, Text, TouchableOpacity, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useMemo } from "react";
 import PokemonList from "../../commons/components/ListPokemon";
 import Styles from "./styles";
 import { storage } from "../../commons/helpers/mkkv";
 import { useFocusEffect } from "@react-navigation/native";
+import { TItemPokemon } from "../../commons/types/pokedex";
 
 type TFavoritePokemon = {
   route: any;
@@ -20,20 +21,21 @@ function FavoritePokemon({ route, navigation }: TFavoritePokemon) {
     }, [])
   );
 
-  const listFavorite = () => {
+  function listFavorite(): Array<TItemPokemon> {
     try {
-      const stringFav = storage.getString("favorite");
+      const stringFav = storage.getString("pokedex.favorite");
       if (stringFav) {
-        return JSON.parse(stringFav);
+        const valParse = JSON.parse(stringFav);
+        return Object.values(valParse);
       } else {
         return [];
       }
     } catch (error) {
       return [];
     }
-  };
+  }
 
-  const listFavoriteMemo = React.useMemo(() => listFavorite(), [updateList]);
+  const getListFavorite = useMemo(() => listFavorite(), [updateList]);
 
   return (
     <SafeAreaView style={Styles.safeArea}>
@@ -41,7 +43,7 @@ function FavoritePokemon({ route, navigation }: TFavoritePokemon) {
         <PokemonList
           isFavorite={true}
           navigation={navigation}
-          data={listFavorite()}
+          data={getListFavorite}
         />
         <StatusBar style="auto" />
       </View>
