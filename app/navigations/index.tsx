@@ -31,7 +31,11 @@ const Navigation = () => {
                   navigation.navigate("FavoritePokemon");
                 }}
               >
-                <MaterialIcons name="favorite-border" size={24} color="black" />
+                <MaterialIcons
+                  name="favorite-border"
+                  size={24}
+                  color="#4B4B4B"
+                />
               </TouchableOpacity>
             ),
           })}
@@ -44,7 +48,7 @@ const Navigation = () => {
             headerTitle: "Pokemon Detail",
             headerLeft: () => (
               <TouchableOpacity onPress={() => navigation.goBack()}>
-                <AntDesign name="arrowleft" size={24} color="black" />
+                <AntDesign name="arrowleft" size={24} color="#4B4B4B" />
               </TouchableOpacity>
             ),
           })}
@@ -57,7 +61,7 @@ const Navigation = () => {
             headerTitleAlign: "center",
             headerLeft: () => (
               <TouchableOpacity onPress={() => navigation.goBack()}>
-                <AntDesign name="arrowleft" size={24} color="black" />
+                <AntDesign name="arrowleft" size={24} color="#4B4B4B" />
               </TouchableOpacity>
             ),
           })}
