@@ -2,76 +2,111 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { TouchableOpacity, Text, View } from "react-native";
 import Styles from "../styles";
 import { storage } from "../../../commons/helpers/mkkv";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useFocusEffect } from "@react-navigation/native";
-
-type TItemPokemon = {
-  id: number | string;
-  name: string;
-  imageUrl?: string;
-};
+import { TItemPokemon } from "../../../commons/types/pokedex";
 
 const TitleSection = ({ item }: { item: TItemPokemon }) => {
-  const [triggerCheck, setTriggerCheck] = useState(false);
+  const [triggerCheckCount, setTriggerCheckCount] = useState(1);
+  const [isFinishCheck, setIsFinishCheck] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      setTriggerCheckCount(1);
+      onSetOnLeave();
+    };
+  }, [isFinishCheck]);
 
   useFocusEffect(
     useCallback(() => {
-      setTriggerCheck((prev) => !prev);
+      setIsFinishCheck(false);
+      setTriggerCheckCount((prev) => prev + 1);
     }, [])
   );
 
-  const onSetFavorite = () => {
-    try {
-      const prev = storage.getString("favorite");
-      if (prev) {
-        const prevParsed = JSON.parse(prev);
-        if (prevParsed?.find((x) => x.name === item.name)) {
-          const newData = prevParsed.filter((x) => x.name !== item.name);
-          storage.set("favorite", JSON.stringify(newData));
-          setTriggerCheck((prev) => !prev);
-          return;
+  const onSetOnLeave = () => {
+    if (isFinishCheck) {
+      const prevChecked: any = storage.getString(`pokedex.${item?.id}`);
+      const prevItems = storage.getString("pokedex.favorite");
+
+      if (prevItems) {
+        const parsed = JSON.parse(prevItems);
+        const cloned = { ...parsed };
+        if (!prevChecked) {
+          delete cloned[item?.id];
+          storage.set("pokedex.favorite", JSON.stringify(cloned));
         } else {
-          const newData = prevParsed ? [...prevParsed, item] : [item];
-          storage.set("favorite", JSON.stringify(newData));
+          storage.set(
+            "pokedex.favorite",
+            JSON.stringify({ ...cloned, [item?.id]: item })
+          );
         }
       } else {
-        storage.set("favorite", JSON.stringify([item]));
-        setTriggerCheck((prev) => !prev);
+        if (prevChecked) {
+          storage.set("pokedex.favorite", JSON.stringify({ [item?.id]: item }));
+        }
       }
-      setTriggerCheck((prev) => !prev);
+    }
+  };
+
+  const onSetNewFavorite = () => {
+    try {
+      if (!item?.id && item?.name) {
+        return;
+      }
+      const prev = storage.getString(`pokedex.${item?.id}`);
+      if (prev) {
+        storage.delete(`pokedex.${item?.id}`);
+        setIsFavorite(false);
+      } else {
+        setIsFavorite(true);
+        storage.set(`pokedex.${item?.id}`, JSON.stringify(item));
+      }
     } catch (error) {
       return;
     }
   };
 
-  const isExist = useCallback(() => {
+  const checkFavorite = () => {
     try {
-      const favorite: any = storage.getString("favorite");
-      const dataParsed: Array<TItemPokemon> = JSON.parse(favorite);
-      if (dataParsed?.find((x) => x.name === item.name)) {
-        return true;
+      const prev = storage.getString(`pokedex.${item?.id}`);
+      if (prev) {
+        setIsFavorite(true);
+      } else {
+        setIsFavorite(false);
       }
-      return false;
+      setIsFinishCheck(true);
     } catch (error) {
+      setIsFavorite(false);
+      setIsFinishCheck(true);
       return false;
     }
-  }, [triggerCheck, item?.name]);
+  };
+
+  useEffect(() => {
+    if (item?.id && item?.name) {
+      checkFavorite();
+    }
+  }, [item, triggerCheckCount]);
 
   return (
     <>
       <View style={Styles.titleSectionWrapper}>
         <Text style={Styles.pokemonTitle}>{item?.name}</Text>
-        <TouchableOpacity
-          disabled={!item?.name || !item?.id}
-          onPress={onSetFavorite}
-          style={{ opacity: !item.name ? 0.5 : 1 }}
-        >
-          <MaterialIcons
-            name={isExist() ? "favorite" : "favorite-border"}
-            size={24}
-            color={isExist() ? "orange" : "black"}
-          />
-        </TouchableOpacity>
+        {isFinishCheck && (
+          <TouchableOpacity
+            disabled={!item?.name || !item?.id}
+            onPress={onSetNewFavorite}
+            style={{ opacity: !item.name ? 0.5 : 1 }}
+          >
+            <MaterialIcons
+              name={isFavorite ? "favorite" : "favorite-border"}
+              size={24}
+              color={!item.name ? "white" : isFavorite ? "orange" : "black"}
+            />
+          </TouchableOpacity>
+        )}
       </View>
     </>
   );

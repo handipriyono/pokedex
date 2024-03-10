@@ -17,16 +17,28 @@ export default StyleSheet.create({
     marginTop: 10,
     paddingHorizontal: 16,
   },
-  titleAbility: { fontSize: 20, fontWeight: "700" },
+  titleAbility: {
+    fontSize: 20,
+    marginBottom: 10,
+    fontFamily: Platform.select({
+      android: "Roboto_700Bold",
+      ios: "Roboto-Bold",
+    }),
+  },
   itemAbility: {
     fontSize: 14,
-    fontWeight: "400",
-    fontFamily:
-      Platform.OS === "android" ? "Roboto-Regular" : "Roboto_400Regular",
+    lineHeight: 18,
+    fontFamily: Platform.select({
+      android: "Roboto_400Regular",
+      ios: "Roboto-Regular",
+    }),
   },
   spriteTitleWrapper: {
     fontSize: 20,
-    fontFamily: Platform.OS === "android" ? "Roboto-Bold" : "Roboto_700Bold",
+    fontFamily: Platform.select({
+      android: "Roboto_700Bold",
+      ios: "Roboto-Bold",
+    }),
     paddingHorizontal: 15,
     marginTop: 20,
     flex: 1,
@@ -53,8 +65,11 @@ export default StyleSheet.create({
     justifyContent: "space-between",
   },
   pokemonTitle: {
+    textTransform: "capitalize",
     fontSize: 36,
-    fontWeight: "700",
-    fontFamily: Platform.OS === "android" ? "Roboto-Bold" : "Roboto_700Bold",
+    fontFamily: Platform.select({
+      android: "Roboto_700Bold",
+      ios: "Roboto-Bold",
+    }),
   },
 });

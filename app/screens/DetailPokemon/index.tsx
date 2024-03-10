@@ -6,6 +6,7 @@ import SpriteGallery from "./components/SpriteGallery";
 import Abilities from "./components/Abilities";
 import Styles from "./styles";
 import useGetDetailPokemon from "./hooks/useGetDetailPokemon";
+import { urlPokedex } from "../../commons/constant/index";
 
 type TDetailScreen = {
   route: any;
@@ -20,7 +21,7 @@ function DetailScreen({ route }: TDetailScreen) {
     return {
       id: route?.params?.id,
       name: name,
-      imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${route?.params?.id}.png`,
+      imageUrl: `${urlPokedex}/${route?.params?.id}.png`,
     };
   };
 
@@ -35,10 +36,10 @@ function DetailScreen({ route }: TDetailScreen) {
           <View style={Styles.imageWrapper}>
             <Image
               style={Styles.imgDetail}
-              source={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${route?.params?.id}.png`}
+              source={`${urlPokedex}/${route?.params?.id}.png`}
               placeholder={"pokedex"}
               contentFit="contain"
-              transition={1000}
+              transition={200}
             />
           </View>
           <TitleSection item={dataSelected()} />

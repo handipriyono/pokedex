@@ -1,10 +1,7 @@
 import { View, Text } from "react-native";
 import { Image } from "expo-image";
 import Styles from "../styles";
-
-type TSPrite = {
-  sprites: Array<string>;
-};
+import { TSPrite } from "../../../commons/types/pokedex";
 
 const SpriteGallery = ({ sprites }: TSPrite) => {
   return (
@@ -31,7 +28,7 @@ const SpriteGallery = ({ sprites }: TSPrite) => {
                 source={item}
                 placeholder={"error"}
                 contentFit="contain"
-                transition={1000}
+                transition={200}
               />
             </View>
           );
