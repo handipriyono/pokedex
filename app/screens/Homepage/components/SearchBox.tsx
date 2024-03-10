@@ -1,7 +1,5 @@
-import { TextInput, View, TouchableOpacity, Text } from "react-native";
-import React, { useEffect, useState } from "react";
-import useDebounceValue from "../../../commons/hooks/useDebounce";
-import { storage } from "../../../commons/helpers/mkkv";
+import { TextInput, View } from "react-native";
+import React from "react";
 import Styles from "../style";
 
 type TSearchParams = {
