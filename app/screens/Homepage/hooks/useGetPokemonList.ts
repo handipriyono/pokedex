@@ -1,15 +1,14 @@
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { getPokemonList } from "../api";
-import { useCallback, useMemo } from "react";
-import { storage } from "../../../commons/helpers/mkkv";
+import { useMemo } from "react";
+
 const queryKey = "get-list-pokemon";
 
 type TGetPokemonParams = {
-  search: string;
   debouncedSearch: string;
 };
 
-const useGetPokemonList = ({ search, debouncedSearch }: TGetPokemonParams) => {
+const useGetPokemonList = ({ debouncedSearch }: TGetPokemonParams) => {
   const {
     fetchNextPage,
     fetchPreviousPage,
@@ -43,7 +42,6 @@ const useGetPokemonList = ({ search, debouncedSearch }: TGetPokemonParams) => {
   };
 
   const flatResult = () => {
-    const dataCore = data?.pages?.flatMap((x) => x?.results);
     const modifiedResults = data?.pages
       ?.flatMap((x) => x?.results)
       .map((pokemon) => {
@@ -63,6 +61,7 @@ const useGetPokemonList = ({ search, debouncedSearch }: TGetPokemonParams) => {
   return {
     data: dataResult || [],
     fetchNextPage,
+    isFetchingNextPage,
   };
 };
 
