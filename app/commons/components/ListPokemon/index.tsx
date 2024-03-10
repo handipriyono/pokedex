@@ -1,27 +1,10 @@
 import { FlashList } from "@shopify/flash-list";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View, ActivityIndicator } from "react-native";
 import { Image } from "expo-image";
 import Styles from "./style";
 import React, { memo } from "react";
-
-type TItemPokemon = {
-  id: number | string;
-  name: string;
-  imageUrl?: string;
-};
-
-type TItemList = {
-  item: TItemPokemon;
-  navigation: any;
-  isFavorite?: boolean;
-};
-
-type TListPokemon = {
-  navigation: () => void;
-  data: Array<TItemPokemon>;
-  fetchNextPage?: any;
-  isFavorite?: boolean;
-};
+import { TItemList, TListPokemon } from "../../types/pokedex";
+import { urlPokedex } from "../../constant";
 
 const ItemList = ({ item, navigation, isFavorite }: TItemList) => {
   return (
@@ -36,14 +19,10 @@ const ItemList = ({ item, navigation, isFavorite }: TItemList) => {
       >
         <Image
           style={Styles.image}
-          source={
-            isFavorite
-              ? item?.imageUrl
-              : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${item?.id}.png`
-          }
+          source={isFavorite ? item?.imageUrl : `${urlPokedex}/${item?.id}.png`}
           placeholder={"error"}
           contentFit="cover"
-          transition={1000}
+          transition={null}
         />
         <View style={Styles.pokeName}>
           <Text style={Styles.name}>{item?.name}</Text>
@@ -60,13 +39,15 @@ const ListPokemon = ({
   data,
   fetchNextPage,
   isFavorite,
+  isFetchingNextPage,
 }: TListPokemon) => {
   return (
     <>
       <FlashList
         data={data}
         numColumns={2}
-        keyExtractor={(item, index) => String(item?.name)}
+        extraData={data}
+        keyExtractor={(item, index) => String(item?.id)}
         ItemSeparatorComponent={() => <View style={{ height: 5 }} />}
         contentContainerStyle={{ padding: 0 }}
         showsVerticalScrollIndicator={false}
@@ -78,6 +59,13 @@ const ListPokemon = ({
             navigation={navigation}
           />
         )}
+        ListFooterComponent={() => {
+          return isFetchingNextPage ? (
+            <View style={{ flex: 1 }}>
+              <ActivityIndicator />
+            </View>
+          ) : null;
+        }}
         estimatedItemSize={200}
         onEndReached={() => {
           if (fetchNextPage) {

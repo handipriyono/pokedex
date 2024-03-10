@@ -26,10 +26,12 @@ export default StyleSheet.create({
     paddingBottom: 8,
   },
   name: {
+    textTransform: "capitalize",
     fontSize: 16,
-    fontWeight: "500",
-    fontFamily:
-      Platform.OS === "android" ? "Roboto-Medium" : "Roboto_500Medium",
+    fontFamily: Platform.select({
+      android: "Roboto_500Medium",
+      ios: "Roboto-Medium",
+    }),
     textAlign: "center",
   },
 });
