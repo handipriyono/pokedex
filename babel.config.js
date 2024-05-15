@@ -10,6 +10,7 @@ module.exports = function (api) {
             "@commons": "./app/commons",
             "@screens": "./app/screens",
             "@navigations": "./app/navigations",
+            "@assets": "./assets",
             // Add other aliases as needed
           },
         },
