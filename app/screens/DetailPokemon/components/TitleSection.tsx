@@ -1,10 +1,10 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { TouchableOpacity, Text, View } from "react-native";
-import Styles from "../styles";
-import { storage } from "../../../commons/helpers/mkkv";
+import { storage } from "@commons/helpers/mkkv";
 import { useCallback, useEffect, useState } from "react";
 import { useFocusEffect } from "@react-navigation/native";
-import { TItemPokemon } from "../../../commons/types/pokedex";
+import { TItemPokemon } from "@commons/types/pokedex";
+import Styles from "../styles";
 
 const TitleSection = ({ item }: { item: TItemPokemon }) => {
   const [triggerCheckCount, setTriggerCheckCount] = useState(1);

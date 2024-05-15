@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import { Image } from "expo-image";
+import { TSPrite } from "@commons/types/pokedex";
 import Styles from "../styles";
-import { TSPrite } from "../../../commons/types/pokedex";
 
 const SpriteGallery = ({ sprites }: TSPrite) => {
   return (
@@ -10,19 +10,7 @@ const SpriteGallery = ({ sprites }: TSPrite) => {
       <View style={Styles.spriteWrapper}>
         {sprites?.map((item, index) => {
           return (
-            <View
-              key={index}
-              style={{
-                minHeight: 80,
-                width: "47%",
-                marginBottom: 20,
-                borderRadius: 5,
-                borderWidth: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                borderColor: "#A8A8A8",
-              }}
-            >
+            <View key={index} style={Styles.imgWrap}>
               <Image
                 style={Styles.imgSprite}
                 source={item}

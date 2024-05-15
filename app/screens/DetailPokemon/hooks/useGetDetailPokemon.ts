@@ -1,6 +1,5 @@
 import { getDetailPokemon } from "../api";
 import { useQuery } from "@tanstack/react-query";
-import { useCallback } from "react";
 
 const queryKey = "get-detail-pokemon";
 

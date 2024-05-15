@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
+import { TAbility } from "@commons/types/pokedex";
 import Styles from "../styles";
-import { TAbility } from "../../../commons/types/pokedex";
 
 const Abilities = ({ abilities }: TAbility) => {
   return (

@@ -4,9 +4,9 @@ import { Image } from "expo-image";
 import TitleSection from "./components/TitleSection";
 import SpriteGallery from "./components/SpriteGallery";
 import Abilities from "./components/Abilities";
-import Styles from "./styles";
 import useGetDetailPokemon from "./hooks/useGetDetailPokemon";
-import { urlPokedex } from "../../commons/constant/index";
+import { urlPokedex } from "@commons/constant/index";
+import Styles from "./styles";
 
 type TDetailScreen = {
   route: any;

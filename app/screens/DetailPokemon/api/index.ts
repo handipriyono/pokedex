@@ -1,4 +1,4 @@
-import Axios from "../../../commons/helpers/axios";
+import Axios from "@commons/helpers/axios";
 
 type TDetailAPI = {
   id: string;

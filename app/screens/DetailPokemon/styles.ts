@@ -2,7 +2,12 @@ import { Platform, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   safeAreaStyle: { flex: 1, backgroundColor: "#fff" },
-  detailWrapper: { flex: 1, backgroundColor: "#fff", paddingBottom: 100 },
+  detailWrapper: {
+    flex: 1,
+    paddingHorizontal: 5,
+    backgroundColor: "#fff",
+    paddingBottom: 100,
+  },
   imageWrapper: {
     backgroundColor: "#fff",
     borderBottomWidth: 1,
@@ -71,5 +76,15 @@ export default StyleSheet.create({
       android: "Roboto_700Bold",
       ios: "Roboto-Bold",
     }),
+  },
+  imgWrap: {
+    minHeight: 80,
+    width: "47%",
+    marginBottom: 20,
+    borderRadius: 5,
+    borderWidth: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderColor: "#A8A8A8",
   },
 });
