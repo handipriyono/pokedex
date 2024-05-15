@@ -2,9 +2,9 @@ import { TouchableOpacity } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AntDesign } from "@expo/vector-icons";
-import HomePage from "../screens/Homepage";
-import DetailScreen from "../screens/DetailPokemon";
-import FavoritePokemon from "../screens/FavoritePokemon";
+import HomePage from "@screens/Homepage";
+import DetailScreen from "@screens/DetailPokemon";
+import FavoritePokemon from "@screens/FavoritePokemon";
 import { MaterialIcons } from "@expo/vector-icons";
 
 type RootStackParamList = {
@@ -22,7 +22,7 @@ const Navigation = () => {
         <Stack.Screen
           name="Home"
           component={HomePage}
-          options={({ navigation, route }) => ({
+          options={({ navigation }) => ({
             headerTitle: "Pokedex",
             headerTitleAlign: "center",
             headerRight: () => (
@@ -43,11 +43,11 @@ const Navigation = () => {
         <Stack.Screen
           name="DetailPokemon"
           component={DetailScreen}
-          options={({ navigation, route }) => ({
+          options={({ navigation }) => ({
             headerTitleAlign: "center",
             headerTitle: "Pokemon Detail",
             headerLeft: () => (
-              <TouchableOpacity onPress={() => navigation.goBack()}>
+              <TouchableOpacity onPress={navigation.goBack}>
                 <AntDesign name="arrowleft" size={24} color="#4B4B4B" />
               </TouchableOpacity>
             ),
@@ -56,11 +56,11 @@ const Navigation = () => {
         <Stack.Screen
           name="FavoritePokemon"
           component={FavoritePokemon}
-          options={({ navigation, route }) => ({
+          options={({ navigation }) => ({
             headerTitle: "Favorite Pokemon",
             headerTitleAlign: "center",
             headerLeft: () => (
-              <TouchableOpacity onPress={() => navigation.goBack()}>
+              <TouchableOpacity onPress={navigation.goBack}>
                 <AntDesign name="arrowleft" size={24} color="#4B4B4B" />
               </TouchableOpacity>
             ),
