@@ -1,11 +1,11 @@
-import { View, Text, TouchableOpacity, SafeAreaView } from "react-native";
-import { StatusBar } from "expo-status-bar";
 import React, { useMemo } from "react";
-import PokemonList from "../../commons/components/ListPokemon";
-import Styles from "./styles";
-import { storage } from "../../commons/helpers/mkkv";
+import { View, SafeAreaView } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import PokemonList from "@commons/components/ListPokemon";
+import { storage } from "@commons/helpers/mkkv";
 import { useFocusEffect } from "@react-navigation/native";
-import { TItemPokemon } from "../../commons/types/pokedex";
+import { TItemPokemon } from "@commons/types/pokedex";
+import Styles from "./styles";
 
 type TFavoritePokemon = {
   route: any;
