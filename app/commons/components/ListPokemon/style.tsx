@@ -11,9 +11,11 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderRadius: 12,
     height: 221,
+    marginBottom: 15,
   },
   image: {
     height: 180,
+    resizeMode: "contain",
     width: "100%",
     padding: 10,
     justifyContent: "center",

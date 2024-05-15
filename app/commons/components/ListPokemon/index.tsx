@@ -1,10 +1,10 @@
 import { FlashList } from "@shopify/flash-list";
 import { Text, TouchableOpacity, View, ActivityIndicator } from "react-native";
 import { Image } from "expo-image";
-import Styles from "./style";
 import React, { memo } from "react";
 import { TItemList, TListPokemon } from "../../types/pokedex";
-import { urlPokedex } from "../../constant";
+import { urlPokedex } from "@commons/constant";
+import Styles from "./style";
 
 const ItemList = ({ item, navigation, isFavorite }: TItemList) => {
   return (
@@ -48,8 +48,7 @@ const ListPokemon = ({
         numColumns={2}
         extraData={data}
         keyExtractor={(item, index) => String(item?.id)}
-        ItemSeparatorComponent={() => <View style={{ height: 5 }} />}
-        contentContainerStyle={{ padding: 0 }}
+        contentContainerStyle={{ padding: 15 }}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item, index }) => (
