@@ -5,6 +5,7 @@ import PokemonList from "@commons/components/ListPokemon";
 import { storage } from "@commons/helpers/mkkv";
 import { useFocusEffect } from "@react-navigation/native";
 import { TItemPokemon } from "@commons/types/pokedex";
+import EmptyState from "@commons/components/EmptyState";
 import Styles from "./styles";
 
 type TFavoritePokemon = {
@@ -40,11 +41,16 @@ function FavoritePokemon({ route, navigation }: TFavoritePokemon) {
   return (
     <SafeAreaView style={Styles.safeArea}>
       <View style={Styles.favoriteWrapper}>
-        <PokemonList
-          isFavorite={true}
-          navigation={navigation}
-          data={getListFavorite}
-        />
+        {!getListFavorite?.length ? (
+          <EmptyState />
+        ) : (
+          <PokemonList
+            isFavorite={true}
+            navigation={navigation}
+            data={getListFavorite}
+          />
+        )}
+
         <StatusBar style="auto" />
       </View>
     </SafeAreaView>
