@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import useDebounceValue from "../../../commons/hooks/useDebounce";
-import { storage } from "../../../commons/helpers/mkkv";
+import useDebounceValue from "@commons/hooks/useDebounce";
+import { storage } from "@commons/helpers/mkkv";
 
 const useSearch = () => {
   const [search, setSearch] = useState("");

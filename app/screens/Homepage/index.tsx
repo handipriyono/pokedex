@@ -1,10 +1,10 @@
 import { View, Text, TouchableOpacity, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import SearchBox from "./components/SearchBox";
-import PokemonList from "../../commons/components/ListPokemon";
-import Styles from "./style";
+import PokemonList from "@commons/components/ListPokemon";
 import useGetPokemonList from "./hooks/useGetPokemonList";
 import useSearch from "./hooks/useSearch";
+import Styles from "./style";
 
 type THomePage = {
   route: any;
@@ -22,7 +22,7 @@ function HomePage({ route, navigation }: THomePage) {
       <View style={Styles.homeWrapper}>
         <SearchBox search={search} onSearch={onSearch} />
         <PokemonList
-          fetchNextPage={fetchNextPage}
+          fetchNextPage={search ? undefined : fetchNextPage}
           navigation={navigation}
           data={data}
           isFetchingNextPage={isFetchingNextPage}

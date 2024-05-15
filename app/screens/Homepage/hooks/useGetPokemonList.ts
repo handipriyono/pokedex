@@ -37,15 +37,14 @@ const useGetPokemonList = ({ debouncedSearch }: TGetPokemonParams) => {
 
   const getId = (url: string) => {
     const parts = url.split("/");
-    const pokemonNumber = parts?.[parts?.length - 2];
-    return pokemonNumber;
+    return parts?.[parts?.length - 2];
   };
 
   const flatResult = () => {
     const modifiedResults = data?.pages
       ?.flatMap((x) => x?.results)
-      .map((pokemon) => {
-        return { ...pokemon, id: getId(pokemon.url) };
+      ?.map((pokemon) => {
+        return { ...pokemon, id: getId(pokemon?.url) };
       });
     return modifiedResults;
   };
@@ -53,7 +52,7 @@ const useGetPokemonList = ({ debouncedSearch }: TGetPokemonParams) => {
   const dataResult = useMemo(() => {
     return debouncedSearch
       ? flatResult()?.filter((x) =>
-          x.name.includes(String(debouncedSearch).toLowerCase())
+          x?.name?.includes(String(debouncedSearch).toLowerCase())
         )
       : flatResult();
   }, [data?.pages, debouncedSearch]);

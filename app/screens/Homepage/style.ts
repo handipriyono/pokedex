@@ -3,8 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   homeWrapper: {
     flex: 1,
-    backgroundColor: "white",
-    paddingHorizontal: 15,
+    backgroundColor: "#fff",
     paddingBottom: 10,
   },
   safeArea: { flex: 1, backgroundColor: "#fff" },
@@ -12,7 +11,7 @@ export default StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 0,
     marginBottom: 5,
-    paddingHorizontal: 5,
+    paddingHorizontal: 15,
   },
   textInput: {
     backgroundColor: "#fff",
